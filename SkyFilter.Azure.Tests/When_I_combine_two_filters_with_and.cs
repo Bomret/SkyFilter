@@ -25,6 +25,6 @@ namespace SkyFilter.Azure.Tests
 
         private Because of = () => _result = _filter1.And(_filter2);
 
-        private It should_return_the_expected_filter = () => _result.AsAzureTableFilter.Should().Be(_expectedFilter);
+        private It should_return_the_expected_filter = () => _result.AsFilterCondition.Should().Be(_expectedFilter);
     }
 }

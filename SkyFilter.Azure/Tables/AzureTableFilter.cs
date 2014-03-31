@@ -15,28 +15,28 @@ namespace SkyFilter.Azure.Tables
             _filter = filter;
         }
 
-        public string AsAzureTableFilter
+        public string AsFilterCondition
         {
             get { return _filter; }
         }
 
         public IAzureTableFilter And(IAzureTableFilter other)
         {
-            var combined = TableQuery.CombineFilters(_filter, TableOperators.And, other.AsAzureTableFilter);
+            var combined = TableQuery.CombineFilters(_filter, TableOperators.And, other.AsFilterCondition);
 
             return new AzureTableFilter(combined);
         }
 
         public IAzureTableFilter Or(IAzureTableFilter other)
         {
-            var combined = TableQuery.CombineFilters(_filter, TableOperators.Or, other.AsAzureTableFilter);
+            var combined = TableQuery.CombineFilters(_filter, TableOperators.Or, other.AsFilterCondition);
 
             return new AzureTableFilter(combined);
         }
 
         public IAzureTableFilter Not(IAzureTableFilter other)
         {
-            var combined = TableQuery.CombineFilters(_filter, TableOperators.Not, other.AsAzureTableFilter);
+            var combined = TableQuery.CombineFilters(_filter, TableOperators.Not, other.AsFilterCondition);
 
             return new AzureTableFilter(combined);
         }
@@ -48,7 +48,7 @@ namespace SkyFilter.Azure.Tables
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
-            return string.Equals(_filter, other.AsAzureTableFilter);
+            return string.Equals(_filter, other.AsFilterCondition);
         }
 
         public override bool Equals(object obj)
