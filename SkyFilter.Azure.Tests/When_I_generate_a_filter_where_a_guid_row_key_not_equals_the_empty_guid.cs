@@ -10,7 +10,6 @@ namespace SkyFilter.Azure.Tests
     internal class When_I_generate_a_filter_where_a_guid_row_key_not_equals_the_empty_guid
     {
         private static string _expectedFilter;
-        private static IGenerateTableQueryFilters _sut;
         private static IAzureTableFilter _result;
 
         private Establish ctx = () => _expectedFilter = "RowKey ne guid'00000000-0000-0000-0000-000000000000'";
