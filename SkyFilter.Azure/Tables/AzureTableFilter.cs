@@ -1,14 +1,16 @@
 using System;
+using System.Diagnostics;
 using Microsoft.WindowsAzure.Storage.Table;
 using SkyFilter.Azure.Contracts;
 
 namespace SkyFilter.Azure.Tables
 {
-    public sealed class TableFilter : IAzureTableFilter, IEquatable<IAzureTableFilter>
+    [DebuggerDisplay("{_filter}")]
+    public sealed class AzureTableFilter : IAzureTableFilter, IEquatable<IAzureTableFilter>
     {
         private readonly string _filter;
 
-        public TableFilter(string filter)
+        internal AzureTableFilter(string filter)
         {
             _filter = filter;
         }
@@ -22,21 +24,21 @@ namespace SkyFilter.Azure.Tables
         {
             var combined = TableQuery.CombineFilters(_filter, TableOperators.And, other.AsAzureTableFilter);
 
-            return new TableFilter(combined);
+            return new AzureTableFilter(combined);
         }
 
         public IAzureTableFilter Or(IAzureTableFilter other)
         {
             var combined = TableQuery.CombineFilters(_filter, TableOperators.Or, other.AsAzureTableFilter);
 
-            return new TableFilter(combined);
+            return new AzureTableFilter(combined);
         }
 
         public IAzureTableFilter Not(IAzureTableFilter other)
         {
             var combined = TableQuery.CombineFilters(_filter, TableOperators.Not, other.AsAzureTableFilter);
 
-            return new TableFilter(combined);
+            return new AzureTableFilter(combined);
         }
 
         #region Equality
