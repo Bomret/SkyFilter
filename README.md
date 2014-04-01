@@ -36,11 +36,13 @@ var combined = filter1.And(filter2).And(filter3.Or(filter4));
 ```
 
 ## Using filters
-To use a filter for a table query, get the constructed Azure table filter string with the `AsFilterCondition` property:
+To use a filter for a table query, get the constructed Azure table query filter condition string with the `AsFilterCondition` property:
 
 ```csharp
 var filter = GenerateTableFilter.WhereNotEquals("RowKey", Guid.Empty);
-var azureFilter = filter1.AsFilterCondition;
+var filterCondition = filter1.AsFilterCondition;
+
+var query = new TableQuery.Where(filterCondition);
 
 // "RowKey ne guid'00000000-0000-0000-0000-000000000000'"
 ```
