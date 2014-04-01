@@ -6,7 +6,7 @@ using SkyFilter.Azure.Tables;
 
 namespace SkyFilter.Azure.Tests
 {
-    [Subject(typeof (AzureTableFilter), "And")]
+    [Subject(typeof (IAzureTableFilter), "And")]
     internal class When_I_combine_two_filters_with_and
     {
         private static string _expectedFilter;

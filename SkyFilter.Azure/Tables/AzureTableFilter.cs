@@ -1,16 +1,15 @@
 using System;
 using System.Diagnostics;
-using Microsoft.WindowsAzure.Storage.Table;
 using SkyFilter.Azure.Contracts;
 
 namespace SkyFilter.Azure.Tables
 {
     [DebuggerDisplay("{_filter}")]
-    public sealed class AzureTableFilter : IAzureTableFilter, IEquatable<IAzureTableFilter>
+    internal sealed class AzureTableFilter : IAzureTableFilter, IEquatable<IAzureTableFilter>
     {
         private readonly string _filter;
 
-        internal AzureTableFilter(string filter)
+        public AzureTableFilter(string filter)
         {
             _filter = filter;
         }
@@ -22,21 +21,21 @@ namespace SkyFilter.Azure.Tables
 
         public IAzureTableFilter And(IAzureTableFilter other)
         {
-            var combined = TableQuery.CombineFilters(_filter, TableOperators.And, other.AsFilterCondition);
+            var combined = string.Format("({0}) and ({1})", _filter, other.AsFilterCondition);
 
             return new AzureTableFilter(combined);
         }
 
         public IAzureTableFilter Or(IAzureTableFilter other)
         {
-            var combined = TableQuery.CombineFilters(_filter, TableOperators.Or, other.AsFilterCondition);
+            var combined = string.Format("({0}) or ({1})", _filter, other.AsFilterCondition);
 
             return new AzureTableFilter(combined);
         }
 
         public IAzureTableFilter Not(IAzureTableFilter other)
         {
-            var combined = TableQuery.CombineFilters(_filter, TableOperators.Not, other.AsFilterCondition);
+            var combined = string.Format("({0}) not ({1})", _filter, other.AsFilterCondition);
 
             return new AzureTableFilter(combined);
         }

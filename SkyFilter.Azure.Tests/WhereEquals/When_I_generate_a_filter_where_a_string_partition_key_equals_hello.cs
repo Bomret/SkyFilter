@@ -3,9 +3,9 @@ using Machine.Specifications;
 using SkyFilter.Azure.Contracts;
 using SkyFilter.Azure.Tables;
 
-namespace SkyFilter.Azure.Tests
+namespace SkyFilter.Azure.Tests.WhereEquals
 {
-    [Subject(typeof (GenerateTableFilter), "WhereEquals")]
+    [Subject(typeof (GenerateTableFilter), "WhereEqual")]
     internal class When_I_generate_a_filter_where_a_string_partition_key_equals_hello
     {
         private static string _expectedFilter;

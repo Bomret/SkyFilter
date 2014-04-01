@@ -38,23 +38,67 @@
     <Reference Include="Machine.Specifications">
       <HintPath>..\packages\Machine.Specifications.0.8.0\lib\net45\Machine.Specifications.dll</HintPath>
     </Reference>
-    <Reference Include="Machine.Specifications.Clr4">
-      <HintPath>..\packages\Machine.Specifications.0.8.0\lib\net45\Machine.Specifications.Clr4.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="When_I_combine_four_filters_with_and_and_an_inner_or.cs" />
+    <Compile Include="When_I_combine_four_filters_with_and_or_and_an_inner_not.cs" />
     <Compile Include="When_I_combine_two_filters_with_and.cs" />
-    <Compile Include="When_I_generate_a_filter_where_a_string_partition_key_equals_hello.cs" />
-    <Compile Include="When_I_generate_a_filter_where_a_guid_row_key_not_equals_the_empty_guid.cs" />
+    <Compile Include="When_I_combine_two_filters_with_not.cs" />
+    <Compile Include="When_I_combine_two_filters_with_or.cs" />
+    <Compile Include="WhereEquals\When_I_generate_a_filter_where_a_binary_partition_key_equals_an_array_containing_1_50_233.cs" />
+    <Compile Include="WhereEquals\When_I_generate_a_filter_where_a_boolean_partition_key_equals_true.cs" />
+    <Compile Include="WhereEquals\When_I_generate_a_filter_where_a_datetime_partition_key_equals_july_10th_2001_noon.cs" />
+    <Compile Include="WhereEquals\When_I_generate_a_filter_where_a_double_partition_key_equals_10_point_5.cs" />
+    <Compile Include="WhereEquals\When_I_generate_a_filter_where_a_guid_partition_key_equals_the_empty_guid.cs" />
+    <Compile Include="WhereEquals\When_I_generate_a_filter_where_a_int_partition_key_equals_10.cs" />
+    <Compile Include="WhereEquals\When_I_generate_a_filter_where_a_long_partition_key_equals_10L.cs" />
+    <Compile Include="WhereEquals\When_I_generate_a_filter_where_a_string_partition_key_equals_hello.cs" />
+    <Compile Include="WhereGreaterThanOrEqual\When_I_generate_a_filter_where_a_binary_partition_key_is_greater_than_or_equal_to_an_array_containing_1_50_233.cs" />
+    <Compile Include="WhereGreaterThanOrEqual\When_I_generate_a_filter_where_a_boolean_partition_key_is_greater_than_or_equal_to_true.cs" />
+    <Compile Include="WhereGreaterThanOrEqual\When_I_generate_a_filter_where_a_datetime_partition_key_is_greater_than_or_equal_to_july_10th_2001_noon.cs" />
+    <Compile Include="WhereGreaterThanOrEqual\When_I_generate_a_filter_where_a_double_partition_key_is_greater_than_or_equal_to_10_point_5.cs" />
+    <Compile Include="WhereGreaterThanOrEqual\When_I_generate_a_filter_where_a_guid_partition_key_is_greater_than_or_equal_to_the_empty_guid.cs" />
+    <Compile Include="WhereGreaterThanOrEqual\When_I_generate_a_filter_where_a_int_partition_key_is_greater_than_or_equal_to_10.cs" />
+    <Compile Include="WhereGreaterThanOrEqual\When_I_generate_a_filter_where_a_long_partition_key_is_greater_than_or_equal_to_10L.cs" />
+    <Compile Include="WhereGreaterThanOrEqual\When_I_generate_a_filter_where_a_string_partition_key_is_greater_than_or_equal_to_hello.cs" />
+    <Compile Include="WhereGreaterThan\When_I_generate_a_filter_where_a_binary_partition_key_is_greater_than_an_array_containing_1_50_233.cs" />
+    <Compile Include="WhereGreaterThan\When_I_generate_a_filter_where_a_boolean_partition_key_is_greater_than_to_true.cs" />
+    <Compile Include="WhereGreaterThan\When_I_generate_a_filter_where_a_datetime_partition_key_is_greater_than_july_10th_2001_noon.cs" />
+    <Compile Include="WhereGreaterThan\When_I_generate_a_filter_where_a_double_partition_key_is_greater_than_10_point_5.cs" />
+    <Compile Include="WhereGreaterThan\When_I_generate_a_filter_where_a_guid_partition_key_is_greater_than_the_empty_guid.cs" />
+    <Compile Include="WhereGreaterThan\When_I_generate_a_filter_where_a_int_partition_key_is_greater_than_10.cs" />
+    <Compile Include="WhereGreaterThan\When_I_generate_a_filter_where_a_long_partition_key_is_greater_than_10L.cs" />
+    <Compile Include="WhereGreaterThan\When_I_generate_a_filter_where_a_string_partition_key_is_greater_than_hello.cs" />
+    <Compile Include="WhereLessThanOrEqual\When_I_generate_a_filter_where_a_binary_partition_key_is_less_than_or_equal_to_an_array_containing_1_50_233.cs" />
+    <Compile Include="WhereLessThanOrEqual\When_I_generate_a_filter_where_a_boolean_partition_key_is_less_than_or_equal_to_true.cs" />
+    <Compile Include="WhereLessThanOrEqual\When_I_generate_a_filter_where_a_datetime_partition_key_is_less_than_or_equal_to_july_10th_2001_noon.cs" />
+    <Compile Include="WhereLessThanOrEqual\When_I_generate_a_filter_where_a_double_partition_key_is_less_than_or_equal_to_10_point_5.cs" />
+    <Compile Include="WhereLessThanOrEqual\When_I_generate_a_filter_where_a_guid_partition_key_is_less_than_or_equal_to_the_empty_guid.cs" />
+    <Compile Include="WhereLessThanOrEqual\When_I_generate_a_filter_where_a_int_partition_key_is_less_than_or_equal_to_10.cs" />
+    <Compile Include="WhereLessThanOrEqual\When_I_generate_a_filter_where_a_long_partition_key_is_less_than_or_equal_to_10L.cs" />
+    <Compile Include="WhereLessThanOrEqual\When_I_generate_a_filter_where_a_string_partition_key_is_less_than_or_equal_to_hello.cs" />
+    <Compile Include="WhereLessThan\When_I_generate_a_filter_where_a_binary_partition_key_is_less_than_an_array_containing_1_50_233.cs" />
+    <Compile Include="WhereLessThan\When_I_generate_a_filter_where_a_boolean_partition_key_is_less_than_to_true.cs" />
+    <Compile Include="WhereLessThan\When_I_generate_a_filter_where_a_datetime_partition_key_is_less_than_july_10th_2001_noon.cs" />
+    <Compile Include="WhereLessThan\When_I_generate_a_filter_where_a_double_partition_key_is_less_than_10_point_5.cs" />
+    <Compile Include="WhereLessThan\When_I_generate_a_filter_where_a_guid_partition_key_is_less_than_the_empty_guid.cs" />
+    <Compile Include="WhereLessThan\When_I_generate_a_filter_where_a_int_partition_key_is_less_than_10.cs" />
+    <Compile Include="WhereLessThan\When_I_generate_a_filter_where_a_long_partition_key_is_less_than_10L.cs" />
+    <Compile Include="WhereLessThan\When_I_generate_a_filter_where_a_string_partition_key_is_less_than_hello.cs" />
+    <Compile Include="WhereNotEqual\When_I_generate_a_filter_where_a_binary_partition_key_not_equals_an_array_containing_1_50_233.cs" />
+    <Compile Include="WhereNotEqual\When_I_generate_a_filter_where_a_boolean_partition_key_not_equals_true.cs" />
+    <Compile Include="WhereNotEqual\When_I_generate_a_filter_where_a_datetime_partition_key_not_equals_july_10th_2001_noon.cs" />
+    <Compile Include="WhereNotEqual\When_I_generate_a_filter_where_a_double_partition_key_not_equals_10_point_5.cs" />
+    <Compile Include="WhereNotEqual\When_I_generate_a_filter_where_a_guid_partition_key_not_equals_the_empty_guid.cs" />
+    <Compile Include="WhereNotEqual\When_I_generate_a_filter_where_a_int_partition_key_not_equals_10.cs" />
+    <Compile Include="WhereNotEqual\When_I_generate_a_filter_where_a_long_partition_key_not_equals_10L.cs" />
+    <Compile Include="WhereNotEqual\When_I_generate_a_filter_where_a_string_partition_key_not_equals_hello.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
