@@ -105,7 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SkyFilter.Azure\SkyFilter.Azure.csproj">
-      <Project>{1310ef62-4bc0-4fb9-a224-7be53c6cdb95}</Project>
+      <Project>{F5D7E9D5-02EE-4258-A38C-674561E2E50B}</Project>
       <Name>SkyFilter.Azure</Name>
     </ProjectReference>
   </ItemGroup>

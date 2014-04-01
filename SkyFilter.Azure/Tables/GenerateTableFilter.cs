@@ -1,7 +1,9 @@
 using System;
 using SkyFilter.Azure.Contracts;
-using SkyFilter.Azure.Types;
-using SkyFilter.Azure.Util;
+
+#if WINDOWS_RT    
+    using System.Runtime.InteropServices.WindowsRuntime;
+#endif
 
 namespace SkyFilter.Azure.Tables
 {
@@ -49,7 +51,12 @@ namespace SkyFilter.Azure.Tables
             return new AzureTableFilter(filter);
         }
 
-        public static IAzureTableFilter WhereLessThan(string propertyName, byte[] expectedValue)
+        public static IAzureTableFilter WhereLessThan(string propertyName,
+#if WINDOWS_RT
+            [ReadOnlyArray]
+#endif
+                                                      byte[] expectedValue
+            )
         {
             var filter = CreateFilter.From(propertyName, FilterOps.LessThan, expectedValue);
 
@@ -105,7 +112,11 @@ namespace SkyFilter.Azure.Tables
             return new AzureTableFilter(filter);
         }
 
-        public static IAzureTableFilter WhereLessThanOrEqual(string propertyName, byte[] expectedValue)
+        public static IAzureTableFilter WhereLessThanOrEqual(string propertyName,
+#if WINDOWS_RT
+            [ReadOnlyArray]
+#endif
+                                                             byte[] expectedValue)
         {
             var filter = CreateFilter.From(propertyName, FilterOps.LessThanOrEqual, expectedValue);
 
@@ -161,7 +172,11 @@ namespace SkyFilter.Azure.Tables
             return new AzureTableFilter(filter);
         }
 
-        public static IAzureTableFilter WhereEqual(string propertyName, byte[] expectedValue)
+        public static IAzureTableFilter WhereEqual(string propertyName,
+#if WINDOWS_RT
+            [ReadOnlyArray]
+#endif
+                                                   byte[] expectedValue)
         {
             var filter = CreateFilter.From(propertyName, FilterOps.Equal, expectedValue);
 
@@ -217,7 +232,11 @@ namespace SkyFilter.Azure.Tables
             return new AzureTableFilter(filter);
         }
 
-        public static IAzureTableFilter WhereNotEqual(string propertyName, byte[] expectedValue)
+        public static IAzureTableFilter WhereNotEqual(string propertyName,
+#if WINDOWS_RT
+            [ReadOnlyArray]
+#endif
+                                                      byte[] expectedValue)
         {
             var filter = CreateFilter.From(propertyName, FilterOps.NotEqual, expectedValue);
 
@@ -273,7 +292,11 @@ namespace SkyFilter.Azure.Tables
             return new AzureTableFilter(filter);
         }
 
-        public static IAzureTableFilter WhereGreaterThan(string propertyName, byte[] expectedValue)
+        public static IAzureTableFilter WhereGreaterThan(string propertyName,
+#if WINDOWS_RT
+            [ReadOnlyArray]
+#endif
+                                                         byte[] expectedValue)
         {
             var filter = CreateFilter.From(propertyName, FilterOps.GreaterThan, expectedValue);
 
@@ -329,7 +352,11 @@ namespace SkyFilter.Azure.Tables
             return new AzureTableFilter(filter);
         }
 
-        public static IAzureTableFilter WhereGreaterThanOrEqual(string propertyName, byte[] expectedValue)
+        public static IAzureTableFilter WhereGreaterThanOrEqual(string propertyName,
+#if WINDOWS_RT
+            [ReadOnlyArray]
+#endif
+                                                                byte[] expectedValue)
         {
             var filter = CreateFilter.From(propertyName, FilterOps.GreaterThanOrEqual, expectedValue);
 

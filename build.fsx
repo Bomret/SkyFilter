@@ -7,6 +7,7 @@ RestorePackages()
 let buildDir = "./build"
 let net451Dir = buildDir + "/net451"
 let net45Dir = buildDir + "/net45"
+let net40Dir = buildDir + "/net45"
 
 let testDir = "./test"
 let packagingDir = "./package"
@@ -34,6 +35,10 @@ Target "BuildLib" (fun _ ->
     !! "SkyFilter.Azure/**/*.csproj"
     |> MSBuild net45Dir "Build" ["Configuration","Net45"]
     |> Log "Build output: "
+
+    !! "SkyFilter.Azure/**/*.csproj"
+    |> MSBuild net40Dir "Build" ["Configuration","Net40"]
+    |> Log "Build output: "
 )
 
 Target "BuildTests" (fun _ -> 
@@ -50,9 +55,11 @@ Target "Test" (fun _ ->
 Target "CreatePackage" (fun _ ->
   CreateDir "package/lib/net451"
   CreateDir "package/lib/net45"
+  CreateDir "package/lib/net40"
 
   CopyFile "package/lib/net451/SkyFilter.Azure.dll" "build/net451/SkyFilter.Azure.dll"
   CopyFile "package/lib/net45/SkyFilter.Azure.dll" "build/net45/SkyFilter.Azure.dll"
+  CopyFile "package/lib/net40/SkyFilter.Azure.dll" "build/net40/SkyFilter.Azure.dll"
 
   NuGet (fun p ->
     {p with

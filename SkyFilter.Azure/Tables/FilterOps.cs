@@ -1,4 +1,4 @@
-﻿namespace SkyFilter.Azure.Types
+namespace SkyFilter.Azure.Tables
 {
     internal static class FilterOps
     {

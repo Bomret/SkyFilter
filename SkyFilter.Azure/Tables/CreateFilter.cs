@@ -3,7 +3,11 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace SkyFilter.Azure.Util
+#if WINDOWS_RT    
+    using System.Runtime.InteropServices.WindowsRuntime;
+#endif
+
+namespace SkyFilter.Azure.Tables
 {
     internal static class CreateFilter
     {
@@ -46,7 +50,12 @@ namespace SkyFilter.Azure.Util
             return string.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", propertyName, op, expectedValue ? "true" : "false");
         }
 
-        public static string From(string propertyName, string op, byte[] expectedValue)
+        public static string From(string propertyName,
+                                  string op,
+#if WINDOWS_RT
+            [ReadOnlyArray]
+#endif
+                                  byte[] expectedValue)
         {
             var asHexString = expectedValue.Aggregate(new StringBuilder(), (b, c) => b.AppendFormat("{0:x2}", c));
 
