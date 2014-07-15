@@ -1,10 +1,8 @@
 using System;
-using System.Diagnostics;
 using SkyFilter.Azure.Contracts;
 
 namespace SkyFilter.Azure.Tables
 {
-    [DebuggerDisplay("{_filter}")]
     internal sealed class AzureTableFilter : IAzureTableFilter, IEquatable<IAzureTableFilter>
     {
         private readonly string _filter;

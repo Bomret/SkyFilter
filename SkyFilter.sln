@@ -5,13 +5,13 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyFilter.Azure.Tests", "SkyFilter.Azure.Tests\SkyFilter.Azure.Tests.csproj", "{3577D6A5-836E-4335-8560-0BA0D6FC2AC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyFilter.Azure", "SkyFilter.Azure\SkyFilter.Azure.csproj", "{F5D7E9D5-02EE-4258-A38C-674561E2E50B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{73F785BC-0F57-4987-9606-DA2089FD8C55}"
 	ProjectSection(SolutionItems) = preProject
 		build.fsx = build.fsx
 		package.nuspec = package.nuspec
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyFilter.Azure", "SkyFilter.Azure\SkyFilter.Azure.csproj", "{D224E1F9-7980-4101-AE3A-B04BCA6FCDF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{3577D6A5-836E-4335-8560-0BA0D6FC2AC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3577D6A5-836E-4335-8560-0BA0D6FC2AC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3577D6A5-836E-4335-8560-0BA0D6FC2AC4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5D7E9D5-02EE-4258-A38C-674561E2E50B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5D7E9D5-02EE-4258-A38C-674561E2E50B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5D7E9D5-02EE-4258-A38C-674561E2E50B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5D7E9D5-02EE-4258-A38C-674561E2E50B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D224E1F9-7980-4101-AE3A-B04BCA6FCDF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D224E1F9-7980-4101-AE3A-B04BCA6FCDF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D224E1F9-7980-4101-AE3A-B04BCA6FCDF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D224E1F9-7980-4101-AE3A-B04BCA6FCDF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
