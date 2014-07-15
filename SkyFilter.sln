@@ -1,9 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyFilter.Azure.Tests", "SkyFilter.Azure.Tests\SkyFilter.Azure.Tests.csproj", "{3577D6A5-836E-4335-8560-0BA0D6FC2AC4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyFilter.Azure", "SkyFilter.Azure\SkyFilter.Azure.csproj", "{F5D7E9D5-02EE-4258-A38C-674561E2E50B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{73F785BC-0F57-4987-9606-DA2089FD8C55}"
+	ProjectSection(SolutionItems) = preProject
+		build.fsx = build.fsx
+		package.nuspec = package.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

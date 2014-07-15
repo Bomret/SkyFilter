@@ -1,64 +1,54 @@
-#r @"FAKE\tools\FakeLib.dll"
+﻿#r @"FAKE\tools\FakeLib.dll"
 open Fake
-open Fake.AssemblyInfoFile
 
 RestorePackages()
 
+let name = "SkyFilter"
+let solution = name + ".sln"
+let builtAssembly = name + ".Azure.dll"
+let publishDir = "./publish"
 let buildDir = "./build"
-let net451Dir = buildDir + "/net451"
-let net45Dir = buildDir + "/net45"
-let net40Dir = buildDir + "/net40"
-
 let testDir = "./test"
-let packagingDir = "./package"
-let testAssemblies = !! (testDir + "/*.Tests.dll")
+
 let version = 
     match buildServer with
         | TeamCity -> buildVersion
-        | _ -> "0.8"
+        | _ -> "0.5.0"
 
-Target "Clean" (fun _ -> CleanDirs [buildDir; testDir; packagingDir])
+Target "Clean" (fun _ -> CleanDirs [buildDir; testDir; publishDir])
 
-Target "BuildLib" (fun _ -> 
-    !! "SkyFilter.Azure/**/*.csproj"
-    |> MSBuildRelease buildDir "Build"
-    |> Log "Build output: "
+Target "Build Library" (fun _ ->
+    MSBuildRelease buildDir "Build" [solution]
+    |> Log "Building app: "
 )
 
-Target "BuildTests" (fun _ -> 
-    !! "SkyFilter.Azure.Tests/**/*.csproj"
+Target "Build Tests" (fun _ -> 
+    !! "*.Tests/**/*.csproj"
     |> MSBuildDebug testDir "Build"
-    |> Log "Test build output: "
+    |> Log "Building tests: "
 )
 
 Target "Test" (fun _ ->
-    testAssemblies
-        |> MSpec (fun p -> {p with HtmlOutputDir = testDir})
+    !! (testDir @@ "*.Tests.dll")
+    |> MSpec (fun p -> {p with HtmlOutputDir = testDir})
 )
 
-Target "CreatePackage" (fun _ ->
-  CreateDir "package/lib/net451"
-  CreateDir "package/lib/net45"
-  CreateDir "package/lib/net40"
+Target "Create NuGet Package" (fun _ ->
+    CopyFiles publishDir !! (buildDir @@ builtAssembly)
 
-  CopyFile "package/lib/net451/SkyFilter.Azure.dll" "build/SkyFilter.Azure.dll"
-  CopyFile "package/lib/net45/SkyFilter.Azure.dll" "build/SkyFilter.Azure.dll"
-  CopyFile "package/lib/net40/SkyFilter.Azure.dll" "build/SkyFilter.Azure.dll"
-
-  NuGet (fun p ->
-    {p with
-        WorkingDir = packagingDir
-        OutputPath = packagingDir
-        Version = version
-        Publish = false
-            })
-            "SkyFilter.Azure.nuspec"
+    NuGet (fun p -> 
+        {p with                               
+            OutputPath = publishDir
+            WorkingDir = publishDir
+            Version = version
+            Files = [builtAssembly, Some "lib/portable-net40+sl50+win+WindowsPhoneApp81+wp80", None] }) 
+            "package.nuspec"
 )
 
 "Clean"
-    ==> "BuildLib"
-    ==> "BuildTests"
+    ==> "Build Library"
+    ==> "Build Tests"
     ==> "Test"
-    ==> "CreatePackage"
+    ==> "Create NuGet Package"
 
 RunTargetOrDefault "Test"
