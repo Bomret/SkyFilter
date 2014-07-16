@@ -1,6 +1,12 @@
 # SkyFilter
 Easy creation and fluent combination of Microsoft Azure table filters.
 
+Also available on NuGet (http://www.nuget.org/packages/NiceTry/).
+
+Licensed under the Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0.html).
+
+Build Status: ![Not available](http://ci.devcrowd.de/app/rest/builds/buildType:OpenSource_SkyFilter_Integration/statusIcon)
+
 ## Creating filters
 To create a filter use the static class `GenerateTableFilter`.
 
