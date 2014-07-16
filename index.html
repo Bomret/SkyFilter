@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>SkyFilter.Azure by Bomret</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">SkyFilter.Azure</h1>
+        <p class="header">Easy creation and fluent combination of Microsoft Azure table filters.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/Bomret/SkyFilter/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/Bomret/SkyFilter/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/Bomret/SkyFilter">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/Bomret">Bomret</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About</h1>
+
+<p>Easy creation and fluent combination of Microsoft Azure table filters.</p>
+
+<p>Also available on NuGet (<a href="http://www.nuget.org/packages/SkyFilter.Azure/">http://www.nuget.org/packages/SkyFilter.Azure/</a>).</p>
+
+<p>Licensed under the Apache License 2.0 (<a href="http://www.apache.org/licenses/LICENSE-2.0.html">http://www.apache.org/licenses/LICENSE-2.0.html</a>).</p>
+
+<p>Build Status: <img src="http://ci.devcrowd.de/app/rest/builds/buildType:OpenSource_SkyFilter_Integration/statusIcon" alt="Not available"></p>
+
+<h2>
+<a name="creating-filters" class="anchor" href="#creating-filters"><span class="octicon octicon-link"></span></a>Creating filters</h2>
+
+<p>To create a filter use the static class <code>GenerateTableFilter</code>.</p>
+
+<div class="highlight highlight-csharp"><pre><span class="kt">var</span> <span class="n">filter</span> <span class="p">=</span> <span class="n">GenerateTableFilter</span><span class="p">.</span><span class="n">WhereNotEquals</span><span class="p">(</span><span class="s">"RowKey"</span><span class="p">,</span> <span class="n">Guid</span><span class="p">.</span><span class="n">Empty</span><span class="p">);</span>
+
+<span class="c1">// RowKey ne guid'00000000-0000-0000-0000-000000000000'</span>
+</pre></div>
+
+<h2>
+<a name="combining-filters" class="anchor" href="#combining-filters"><span class="octicon octicon-link"></span></a>Combining filters</h2>
+
+<p>Filters provide three methods to combine them with other filters: <code>And</code>, <code>Or</code> and <code>Not</code>. Those return the combined filter:</p>
+
+<div class="highlight highlight-csharp"><pre><span class="kt">var</span> <span class="n">filter1</span> <span class="p">=</span> <span class="n">GenerateTableFilter</span><span class="p">.</span><span class="n">WhereEqual</span><span class="p">(</span><span class="s">"PartitionKey"</span><span class="p">,</span> <span class="s">"hello"</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">filter2</span> <span class="p">=</span> <span class="n">GenerateTableFilter</span><span class="p">.</span><span class="n">WhereNotEqual</span><span class="p">(</span><span class="s">"RowKey"</span><span class="p">,</span> <span class="n">Guid</span><span class="p">.</span><span class="n">Empty</span><span class="p">);</span>
+
+<span class="kt">var</span> <span class="n">combined</span> <span class="p">=</span> <span class="n">filter1</span><span class="p">.</span><span class="n">And</span><span class="p">(</span><span class="n">filter2</span><span class="p">);</span>
+
+<span class="c1">// (PartitionKey eq 'hello') and (RowKey ne guid'00000000-0000-0000-0000-000000000000')</span>
+</pre></div>
+
+<p>You can group filters logically by combining them:</p>
+
+<div class="highlight highlight-csharp"><pre><span class="kt">var</span> <span class="n">filter1</span> <span class="p">=</span> <span class="n">GenerateTableFilter</span><span class="p">.</span><span class="n">WhereEqual</span><span class="p">(</span><span class="s">"PartitionKey"</span><span class="p">,</span> <span class="s">"hello"</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">filter2</span> <span class="p">=</span> <span class="n">GenerateTableFilter</span><span class="p">.</span><span class="n">WhereNotEqual</span><span class="p">(</span><span class="s">"RowKey"</span><span class="p">,</span> <span class="n">Guid</span><span class="p">.</span><span class="n">Empty</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">filter3</span> <span class="p">=</span> <span class="n">GenerateTableFilter</span><span class="p">.</span><span class="n">WhereEqual</span><span class="p">(</span><span class="s">"Name"</span><span class="p">,</span> <span class="s">"John"</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">filter4</span> <span class="p">=</span> <span class="n">GenerateTableFilter</span><span class="p">.</span><span class="n">WhereGreaterThanOrEqual</span><span class="p">(</span><span class="s">"Age"</span><span class="p">,</span> <span class="m">25</span><span class="p">);</span>
+
+<span class="kt">var</span> <span class="n">combined</span> <span class="p">=</span> <span class="n">filter1</span><span class="p">.</span><span class="n">And</span><span class="p">(</span><span class="n">filter2</span><span class="p">).</span><span class="n">And</span><span class="p">(</span><span class="n">filter3</span><span class="p">.</span><span class="n">Or</span><span class="p">(</span><span class="n">filter4</span><span class="p">));</span>
+
+<span class="c1">// ((PartitionKey eq 'hello') and (RowKey ne guid'00000000-0000-0000-0000-000000000000')) and ((Name eq 'John') or (Age ge 25))</span>
+</pre></div>
+
+<h2>
+<a name="using-filters" class="anchor" href="#using-filters"><span class="octicon octicon-link"></span></a>Using filters</h2>
+
+<p>To use a filter for a table query, get the constructed Azure table query filter condition string with the <code>AsFilterCondition</code> property:</p>
+
+<div class="highlight highlight-csharp"><pre><span class="kt">var</span> <span class="n">filter</span> <span class="p">=</span> <span class="n">GenerateTableFilter</span><span class="p">.</span><span class="n">WhereNotEquals</span><span class="p">(</span><span class="s">"RowKey"</span><span class="p">,</span> <span class="n">Guid</span><span class="p">.</span><span class="n">Empty</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">filterCondition</span> <span class="p">=</span> <span class="n">filter1</span><span class="p">.</span><span class="n">AsFilterCondition</span><span class="p">;</span>
+
+<span class="kt">var</span> <span class="n">query</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TableQuery</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">filterCondition</span><span class="p">);</span>
+
+<span class="c1">// "RowKey ne guid'00000000-0000-0000-0000-000000000000'"</span>
+</pre></div>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
