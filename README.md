@@ -1,7 +1,7 @@
 # SkyFilter
 Easy creation and fluent combination of Microsoft Azure table filters.
 
-Also available on NuGet (http://www.nuget.org/packages/NiceTry/).
+Also available on NuGet (http://www.nuget.org/packages/SkyFilter.Azure/).
 
 Licensed under the Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0.html).
 
